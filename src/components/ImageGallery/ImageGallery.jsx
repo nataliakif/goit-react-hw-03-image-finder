@@ -17,29 +17,29 @@ class ImageGallery extends Component {
   };
 
   getImages = () => {
-    setTimeout(
-      () =>
-        API.fetchImages(this.props.query, this.state.page)
-          .then(response => {
-            if (response.totalHits === 0) {
-              return Promise.reject(
-                new Error(`Nothing was found by query ${this.props.query}`)
-              );
-            } else {
-              console.log(this.state);
-              this.setState({
-                images: [...this.state.images, ...response.hits],
-                status: 'resolved',
-                totalHits: response.totalHits,
-                showModal: false,
-              });
-            }
-          })
-          .catch(error => this.setState({ error, status: 'rejected' })),
-      5000
-    );
+    API.fetchImages(this.props.query, this.state.page)
+      .then(response => {
+        if (response.totalHits === 0) {
+          return Promise.reject(
+            new Error(`Nothing was found by query ${this.props.query}`)
+          );
+        } else {
+          console.log(this.state);
+          this.setState({
+            images: [...this.state.images, ...response.hits],
+            status: 'resolved',
+            totalHits: response.totalHits,
+            showModal: false,
+          });
+        }
+      })
+      .catch(error => this.setState({ error, status: 'rejected' }));
   };
   componentDidUpdate(prevProps, prevState) {
+    window.scrollBy({
+      top: document.body.clientHeight,
+      behavior: 'smooth',
+    });
     if (prevProps.query !== this.props.query) {
       this.setState({ status: 'loading', images: [], page: 1 }, this.getImages);
     }
@@ -74,7 +74,7 @@ class ImageGallery extends Component {
   render() {
     const { images, error, status, totalHits, showModal } = this.state;
 
-    if (!status === 'idle' && !this.props.query) {
+    if (status === 'idle') {
       return (
         <p className={styles['ImageGallery__notify']}>Type your search query</p>
       );
