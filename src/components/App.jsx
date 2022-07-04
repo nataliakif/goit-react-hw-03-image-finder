@@ -4,7 +4,6 @@ import ImageGallery from './ImageGallery/ImageGallery';
 
 class App extends Component {
   state = {
-    images: [],
     query: '',
     id: null,
   };
