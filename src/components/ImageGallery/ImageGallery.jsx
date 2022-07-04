@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './ImageGallery.module.css';
 import API from '../../services/api';
 import { Circles } from 'react-loader-spinner';
@@ -24,7 +25,6 @@ class ImageGallery extends Component {
             new Error(`Nothing was found by query ${this.props.query}`)
           );
         } else {
-          console.log(this.state);
           this.setState({
             images: [...this.state.images, ...response.hits],
             status: 'resolved',
@@ -61,7 +61,6 @@ class ImageGallery extends Component {
   };
   modalData = () => {
     const image = this.state.images.find(image => image.id === this.state.id);
-    console.log(image);
     return image;
   };
 
@@ -106,4 +105,5 @@ class ImageGallery extends Component {
     }
   }
 }
+ImageGallery.propTypes = { query: PropTypes.string.isRequired };
 export default ImageGallery;

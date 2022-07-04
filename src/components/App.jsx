@@ -7,7 +7,6 @@ class App extends Component {
     images: [],
     query: '',
     id: null,
-    showModal: false,
   };
   componentDidMount() {
     console.log('ok');
@@ -16,6 +15,7 @@ class App extends Component {
   handleFormSubmit = query => {
     this.setState({ query });
   };
+
   handleGalleryChange = showButton => {
     this.setState({ showButton });
   };
@@ -31,11 +31,7 @@ class App extends Component {
     return (
       <>
         <Searchbar onSubmit={this.handleFormSubmit} />;
-        <ImageGallery
-          images={images}
-          query={query}
-          onClick={this.handleImageClick}
-        />
+        <ImageGallery query={query} />
       </>
     );
   }
