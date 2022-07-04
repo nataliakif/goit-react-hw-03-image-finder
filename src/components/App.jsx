@@ -1,9 +1,6 @@
 import { Component } from 'react';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import { ToastContainer } from 'react-toastify';
 import Searchbar from './SearchBar/SearchBar';
 import ImageGallery from './ImageGallery/ImageGallery';
-import Modal from './Modal/Modal';
 
 class App extends Component {
   state = {
@@ -30,7 +27,7 @@ class App extends Component {
   };
 
   render() {
-    const { images, query, page, showModal, showButton } = this.state;
+    const { images, query } = this.state;
     return (
       <>
         <Searchbar onSubmit={this.handleFormSubmit} />;
