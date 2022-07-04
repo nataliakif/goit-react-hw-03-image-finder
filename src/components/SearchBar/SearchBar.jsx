@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
-import { toast } from 'react-toastify';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import styles from './SearchBar.module.css';
 
 class Searchbar extends Component {
@@ -13,7 +13,7 @@ class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.state.query.trim() === '') {
-      toast.error('Tipe your search query');
+      Notify.failure('Type your search query');
       return;
     }
     this.props.onSubmit(this.state.query);

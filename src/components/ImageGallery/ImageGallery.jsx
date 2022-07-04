@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ImageGallery.module.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import API from '../../services/api';
 import { Circles } from 'react-loader-spinner';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
@@ -73,11 +74,6 @@ class ImageGallery extends Component {
   render() {
     const { images, error, status, totalHits, showModal } = this.state;
 
-    if (status === 'idle') {
-      return (
-        <p className={styles['ImageGallery__notify']}>Type your search query</p>
-      );
-    }
     if (status === 'pending') {
       return <Circles color="#00BFFF" height={80} width={80} />;
     }
