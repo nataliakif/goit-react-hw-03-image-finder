@@ -26,7 +26,7 @@ class App extends Component {
   };
 
   render() {
-    const { images, query } = this.state;
+    const { query } = this.state;
     return (
       <>
         <Searchbar onSubmit={this.handleFormSubmit} />;
